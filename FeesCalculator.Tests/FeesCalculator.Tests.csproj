@@ -51,6 +51,7 @@
     <Compile Include="PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuarterResolverTests.cs" />
+    <Compile Include="SimplePaymentsConfigurator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -64,11 +64,13 @@
     <Compile Include="Adapters\IAdapter.cs" />
     <Compile Include="Adapters\RateInfo.cs" />
     <Compile Include="Adapters\MtbAdapter.cs" />
-    <Compile Include="Profiles\APFeesConfigurator.cs" />
+    <Compile Include="Adapters\SimplePaymentAdapter.cs" />
+    <Compile Include="Profiles\APTaxFeesProfile.cs" />
     <Compile Include="Configuration\Bsb\BsbAdapterConfigurator.cs" />
     <Compile Include="Configuration\IAdapterConfiguration.cs" />
     <Compile Include="Configuration\Mtb\MtbAdapterConfigurator.cs" />
-    <Compile Include="Configuration\IFeesConfigurator.cs" />
+    <Compile Include="Configuration\ITaxFeesProfile.cs" />
+    <Compile Include="Profiles\SampleTaxFeesProfile.cs" />
     <Compile Include="Utils\HelperUtils.cs" />
     <Compile Include="Utils\IHelperUtils.cs" />
     <Compile Include="Schema\Mtb\payments.designer.cs" />

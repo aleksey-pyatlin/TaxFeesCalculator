@@ -10,14 +10,14 @@ using FeesCalculator.ConsoleApplication.Utils;
 
 namespace FeesCalculator.ConsoleApplication.Profiles
 {
-    public class APFeesConfigurator : IFeesConfigurator
+    public class APTaxFeesProfile : ITaxFeesProfile
     {
         private readonly string _dataDirectoryPath;
         private readonly IRateManager _rateManager;
         private readonly IHelperUtils _helperUtils;
         private AdaptersConfigurator _adaptersConfigurator;
 
-        public APFeesConfigurator(IRateManager rateManager,
+        public APTaxFeesProfile(IRateManager rateManager,
             IHelperUtils helperUtils)
         {
             const string dataDirectory = @"C:\Users\Aleksey\Dropbox\Payments\Data\";

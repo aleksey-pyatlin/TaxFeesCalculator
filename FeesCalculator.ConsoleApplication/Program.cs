@@ -6,6 +6,7 @@ using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.BussinnesLogic.Reports;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
+using FeesCalculator.ConsoleApplication.Configuration;
 using FeesCalculator.ConsoleApplication.Profiles;
 using FeesCalculator.ConsoleApplication.Utils;
 
@@ -18,16 +19,26 @@ namespace FeesCalculator.ConsoleApplication
             IHelperUtils helperUtils = new HelperUtils();
             var rateManager = new RateManager();
             
-            var operationMessages = new List<OperationMessage>();
-            APFeesConfigurator apFeesConfigurator = new APFeesConfigurator(rateManager, helperUtils);
-            apFeesConfigurator.Init();
-            operationMessages.AddRange(apFeesConfigurator.GetOperations());
+            var profiles = new List<ITaxFeesProfile>();
+            var apProfile = false;
+            if (apProfile)
+            {
+                profiles.Add(new APTaxFeesProfile(rateManager, helperUtils));
+            }
 
-            Run(operationMessages, rateManager);
+            profiles.Add(new SampleTaxFeesProfile(rateManager, helperUtils));
+            Run(profiles, rateManager);
         }
 
-        private static void Run(List<OperationMessage> operationMessages, RateManager rateManager)
+        private static void Run(IEnumerable<ITaxFeesProfile> profiles, RateManager rateManager)
         {
+            var operationMessages = new List<OperationMessage>();
+            foreach (var profile in profiles)
+            {
+                profile.Init();
+                operationMessages.AddRange(profile.GetOperations());
+            }
+
             var arrivalConsumptionManager = new ArrivalConsumptionManager(rateManager);
 
             arrivalConsumptionManager.Calculate(operationMessages);
@@ -55,39 +66,6 @@ namespace FeesCalculator.ConsoleApplication
                     {
                         quarters[quarterKey].PaidTaxAmount = taxSellMessage.Amount;
                     }
-                }
-            }
-        }
-
-        private static void WriteTestData(List<OperationMessage> operationMessages)
-        {
-            var days = new List<int>(new[]
-            {
-                15, 22, 31
-            });
-            List<OperationMessage> testdata = (from m in operationMessages
-                where m.Date.Month == 8 && m.Date.Year == 2011 && days.Contains(m.Date.Day)
-                select m).ToList();
-
-            File.Delete(
-                @"D:\Views\Learning\Svn\tests\FeesCalc\FeesCalculator.Tests\Data\SequenceMessageTestData.txt"
-                );
-            foreach (OperationMessage operationMessage in testdata)
-            {
-                if (operationMessage is IncommingPaymentMessage)
-                {
-                    String testData = JsonHelper.ToJson((IncommingPaymentMessage) operationMessage);
-                    File.AppendAllText(
-                        @"D:\Views\Learning\Svn\tests\FeesCalc\FeesCalculator.Tests\Data\SequenceMessageTestData.txt",
-                        "IncommingPaymentMessage|" + testData + Environment.NewLine);
-                }
-
-                if (operationMessage is SellMessage)
-                {
-                    String testData = JsonHelper.ToJson((SellMessage) operationMessage);
-                    File.AppendAllText(
-                        @"D:\Views\Learning\Svn\tests\FeesCalc\FeesCalculator.Tests\Data\SequenceMessageTestData.txt",
-                        "SellMessage|" + testData + Environment.NewLine);
                 }
             }
         }

@@ -120,7 +120,6 @@ namespace FeesCalculator.BussinnesLogic
                     select debit).FirstOrDefault();
         }
 
-
         public QuarterResult GetFinalAmount(QuarterType quartertype, int yearNumber)
         {
             QuarterResult quarterResult = new QuarterResult();
@@ -135,7 +134,8 @@ namespace FeesCalculator.BussinnesLogic
 
         public void Close()
         {
-            _quarterContainer.Quarters.Values.Last().Close();
+            if (_quarterContainer.Quarters.Any())
+                _quarterContainer.Quarters.Values.Last().Close();
         }
 
         public void Calculate(List<OperationMessage> messages)
