@@ -5,6 +5,7 @@ using System.IO;
 using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.BussinnesLogic.Reports;
+using FeesCalculator.Data;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -132,10 +133,11 @@ namespace FeesCalculator.Tests
         }
 
         [Test]
+        [Ignore]
         public void SequenceTest()
         {
             var lines  = File.ReadAllLines(
-                        @"D:\Views\Learning\Svn\tests\FeesCalc\FeesCalculator.Tests\Data\SequenceMessageTestData.txt"
+                        @"..\..\Data\SequenceMessageTestData.txt"
                         );
             List<OperationMessage> messages = new List<OperationMessage>();
             foreach (var line in lines)

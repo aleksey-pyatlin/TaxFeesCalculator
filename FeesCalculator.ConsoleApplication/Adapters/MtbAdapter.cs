@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
-using FeesCalculator.Tests;
+using FeesCalculator.Data;
 
 namespace FeesCalculator.ConsoleApplication.Adapters
 {

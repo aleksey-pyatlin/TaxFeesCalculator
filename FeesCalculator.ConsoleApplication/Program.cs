@@ -6,6 +6,7 @@ using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.BussinnesLogic.Reports;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
+using FeesCalculator.ConsoleApplication.Profiles;
 using FeesCalculator.ConsoleApplication.Utils;
 
 namespace FeesCalculator.ConsoleApplication

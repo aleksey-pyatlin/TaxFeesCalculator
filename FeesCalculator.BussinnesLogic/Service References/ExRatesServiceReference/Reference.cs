@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FeesCalculator.BussinnesLogic.ExRatesServiceReference {
-    using System.Data;
-    
-    
+namespace FeesCalculator.BussinnesLogic.Service_References.ExRatesServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.nbrb.by/", ConfigurationName="ExRatesServiceReference.ExRatesSoap")]
     public interface ExRatesSoap {
@@ -82,12 +79,12 @@ namespace FeesCalculator.BussinnesLogic.ExRatesServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ExRatesSoapChannel : FeesCalculator.BussinnesLogic.ExRatesServiceReference.ExRatesSoap, System.ServiceModel.IClientChannel {
+    public interface ExRatesSoapChannel : ExRatesSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ExRatesSoapClient : System.ServiceModel.ClientBase<FeesCalculator.BussinnesLogic.ExRatesServiceReference.ExRatesSoap>, FeesCalculator.BussinnesLogic.ExRatesServiceReference.ExRatesSoap {
+    public partial class ExRatesSoapClient : System.ServiceModel.ClientBase<ExRatesSoap>, ExRatesSoap {
         
         public ExRatesSoapClient() {
         }

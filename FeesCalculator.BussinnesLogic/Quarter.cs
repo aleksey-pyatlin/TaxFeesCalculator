@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using FeesCalculator.Data;
-using FeesCalculator.Tests;
 
 namespace FeesCalculator.BussinnesLogic
 {

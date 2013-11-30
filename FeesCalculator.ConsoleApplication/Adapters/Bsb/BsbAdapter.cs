@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
-using FeesCalculator.Tests;
+using FeesCalculator.Data;
 
 namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
 {
@@ -390,22 +390,5 @@ namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
             return bsbSummary;
         }
         
-    }
-
-    public class TaxInfo
-    {
-        public QuarterType QuarterType
-        {
-            get; set; 
-        }
-
-        public int YearNumber { get; set; }
-    }
-
-    public class TaxSellMessage : OperationMessage
-    {
-        public QuarterType QuarterType { get; set; }
-
-        public int YearNumber { get; set; }
     }
 }

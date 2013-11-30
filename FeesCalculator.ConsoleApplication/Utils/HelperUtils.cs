@@ -1,7 +1,6 @@
 ﻿using System.IO;
-using FeesCalculator.ConsoleApplication.Utils;
 
-namespace FeesCalculator.ConsoleApplication
+namespace FeesCalculator.ConsoleApplication.Utils
 {
     class HelperUtils : IHelperUtils
     {

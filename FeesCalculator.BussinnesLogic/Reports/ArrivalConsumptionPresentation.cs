@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using FeesCalculator.Data;
-using FeesCalculator.Tests;
 
 namespace FeesCalculator.BussinnesLogic.Reports
 {
@@ -216,10 +215,19 @@ namespace FeesCalculator.BussinnesLogic.Reports
             {
                 Console.WriteLine("Over paid: {0}", DataFormatter.ToDecimal(delta));
             }
-            Quarter quarter2 = quarters[new QuarterKey(){Type = QuarterType.Four,YearNumber = 2011}];
-            paidTaxAmount += quarter2.PaidTaxAmount;
-            calcFees += quarter2.CalcFees;
+            var quarter2Key = new QuarterKey()
+            {
+                Type = QuarterType.Four,
+                YearNumber = 2011
+            };
 
+            if (quarters.ContainsKey(quarter2Key))
+            {
+                Quarter quarter2 = quarters[quarter2Key];
+                paidTaxAmount += quarter2.PaidTaxAmount;
+                calcFees += quarter2.CalcFees;
+            }
+            
             Console.WriteLine("FINAL \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\tNeed pay: {2}".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount), DataFormatter.ToDecimal(paidTaxAmount - calcFees));
 
             Console.WriteLine("\r\nBY YEARS:");

@@ -1,5 +1,6 @@
 using System;
 using FeesCalculator.BussinnesLogic;
+using FeesCalculator.Data;
 using NUnit.Framework;
 
 namespace FeesCalculator.Tests

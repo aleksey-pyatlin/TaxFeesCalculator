@@ -1,4 +1,4 @@
-namespace FeesCalculator.Tests
+namespace FeesCalculator.Data
 {
     public enum QuarterType
     {

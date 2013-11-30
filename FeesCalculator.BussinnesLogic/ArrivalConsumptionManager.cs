@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.Data;
-using FeesCalculator.Tests;
 
 namespace FeesCalculator.BussinnesLogic
 {
     public class ArrivalConsumptionManager
     {
-        private QuarterContainer _quarterContainer;
-
+        private readonly QuarterContainer _quarterContainer;
 
         public Dictionary<QuarterKey, Quarter> Quarters
         {

@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.Serialization;
-using FeesCalculator.Tests;
+using FeesCalculator.Data;
 
 namespace FeesCalculator.BussinnesLogic.Messages
 {

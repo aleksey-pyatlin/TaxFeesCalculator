@@ -59,10 +59,12 @@
     <Compile Include="Adapters\Bsb\BsbOperation.cs" />
     <Compile Include="Adapters\Bsb\BsbSummary.cs" />
     <Compile Include="Adapters\Bsb\Filter.cs" />
+    <Compile Include="Adapters\Bsb\TaxInfo.cs" />
+    <Compile Include="Adapters\Bsb\TaxSellMessage.cs" />
     <Compile Include="Adapters\IAdapter.cs" />
     <Compile Include="Adapters\RateInfo.cs" />
     <Compile Include="Adapters\MtbAdapter.cs" />
-    <Compile Include="APFeesConfigurator.cs" />
+    <Compile Include="Profiles\APFeesConfigurator.cs" />
     <Compile Include="Configuration\Bsb\BsbAdapterConfigurator.cs" />
     <Compile Include="Configuration\IAdapterConfiguration.cs" />
     <Compile Include="Configuration\Mtb\MtbAdapterConfigurator.cs" />

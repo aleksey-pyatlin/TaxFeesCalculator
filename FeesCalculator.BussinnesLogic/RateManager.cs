@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using FeesCalculator.BussinnesLogic.ExRatesServiceReference;
+using FeesCalculator.BussinnesLogic.Service_References.ExRatesServiceReference;
 
 namespace FeesCalculator.BussinnesLogic
 {

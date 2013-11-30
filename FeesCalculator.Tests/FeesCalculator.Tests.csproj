@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MtbAdapterTest.cs" />
     <Compile Include="PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuarterResolverTests.cs" />
@@ -62,7 +61,7 @@
       <Name>FeesCalculator.BussinnesLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\FeesCalculator.ConsoleApplication\FeesCalculator.ConsoleApplication.csproj">
-      <Project>{9547DA12-A8EB-4C40-883C-CC5F90830244}</Project>
+      <Project>{9547da12-a8eb-4c40-883c-cc5f90830244}</Project>
       <Name>FeesCalculator.ConsoleApplication</Name>
     </ProjectReference>
     <ProjectReference Include="..\FeesCalculator.Data\FeesCalculator.Data.csproj">

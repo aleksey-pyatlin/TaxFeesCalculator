@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.ConsoleApplication.Adapters;
@@ -10,7 +8,7 @@ using FeesCalculator.ConsoleApplication.Configuration.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration.Mtb;
 using FeesCalculator.ConsoleApplication.Utils;
 
-namespace FeesCalculator.ConsoleApplication
+namespace FeesCalculator.ConsoleApplication.Profiles
 {
     public class APFeesConfigurator : IFeesConfigurator
     {
