@@ -1,0 +1,5 @@
+IncommingPaymentMessage|{"<Amount>k__BackingField":1440,"<Date>k__BackingField":"\/Date(1313355600000+0300)\/","<Rate>k__BackingField":5028.00}
+SellMessage|{"<Amount>k__BackingField":432,"<Date>k__BackingField":"\/Date(1313960400000+0300)\/","<Rate>k__BackingField":5035,"<SellType>k__BackingField":1}
+SellMessage|{"<Amount>k__BackingField":2016,"<Date>k__BackingField":"\/Date(1314738000000+0300)\/","<Rate>k__BackingField":5096,"<SellType>k__BackingField":2}
+IncommingPaymentMessage|{"<Amount>k__BackingField":1440,"<Date>k__BackingField":"\/Date(1314738000000+0300)\/","<Rate>k__BackingField":5096.00}
+SellMessage|{"<Amount>k__BackingField":432,"<Date>k__BackingField":"\/Date(1314738000000+0300)\/","<Rate>k__BackingField":5107,"<SellType>k__BackingField":1}

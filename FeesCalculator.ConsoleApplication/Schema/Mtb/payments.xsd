@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="STATEMENTS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="STATEMENTBY">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="STATEMENTDATE" type="xs:string" />
+              <xs:element name="ACCOUNT" type="xs:unsignedLong" />
+              <xs:element name="CURRCODE" type="xs:unsignedShort" />
+              <xs:element name="BIC" type="xs:unsignedInt" />
+              <xs:element name="DATAACTUALITY" type="xs:string" />
+              <xs:element name="OPENINGBALANCE" type="xs:string" />
+              <xs:element name="OPENINGBALANCENAT" type="xs:int" />
+              <xs:element name="DATEPREVIOUS" type="xs:string" />
+              <xs:element name="CLOSINGBALANCE" type="xs:string" />
+              <xs:element name="CLOSINGBALANCENAT" type="xs:int" />
+              <xs:element name="DEBETDOCUMENTSNET" type="xs:unsignedByte" />
+              <xs:element name="DEBETTURNOVER" type="xs:string" />
+              <xs:element name="DEBETTURNOVERNAT" type="xs:unsignedInt" />
+              <xs:element name="DEBETDOCUMENTS">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" name="DOCUMENT">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DOCUMENTNUMBER" type="xs:unsignedInt" />
+                          <xs:element name="DOCUMENTDATE" type="xs:string" />
+                          <xs:element name="CURRCODE" type="xs:string" />
+                          <xs:element name="PAYER" type="xs:string" />
+                          <xs:element name="PAYERUNN" type="xs:string" />
+                          <xs:element name="PAYERBANKBIC" type="xs:string" />
+                          <xs:element name="PAYERBANKNAME" type="xs:string" />
+                          <xs:element name="PAYERACCOUNT" type="xs:string" />
+                          <xs:element name="BENEFICIAR" type="xs:string" />
+                          <xs:element name="BENEFICIARUNN" type="xs:unsignedInt" />
+                          <xs:element name="BENEFICIARBANKBIC" type="xs:unsignedInt" />
+                          <xs:element name="BENEFICIARBANKNAME" type="xs:string" />
+                          <xs:element name="BENEFICIARACCOUNT" type="xs:unsignedLong" />
+                          <xs:element name="AMOUNT" type="xs:string" />
+                          <xs:element name="AMOUNTNAT" type="xs:unsignedInt" />
+                          <xs:element name="GROUND" type="xs:string" />
+                          <xs:element name="GROUNDADD" />
+                          <xs:element name="DOCUMENTTYPE" type="xs:string" />
+                          <xs:element name="PAYMENTURGENT" type="xs:string" />
+                          <xs:element name="STATEPAY" type="xs:string" />
+                          <xs:element name="FORWHOMEUNN" />
+                          <xs:element name="FORWHOMESTATEPAY" />
+                          <xs:element name="CORRESPBANKBIC" type="xs:string" />
+                          <xs:element name="CORRESPBANKNAME" />
+                          <xs:element name="CORRESPBANKCORRACCOUNT" />
+                          <xs:element name="RECEIVERBANKBIC" />
+                          <xs:element name="RECEIVERBANKNAME" />
+                          <xs:element name="RECEIVERBANKCORRACCOUNT" />
+                          <xs:element name="BANKOFFICIALS" type="xs:string" />
+                          <xs:element name="VALUEDATE" type="xs:string" />
+                          <xs:element name="NOTEFROMBANK" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="CREDITDOCUMENTSNET" type="xs:unsignedByte" />
+              <xs:element name="CREDITTURNOVER" type="xs:string" />
+              <xs:element name="CREDITTURNOVERNAT" type="xs:unsignedInt" />
+              <xs:element name="CREDITDOCUMENTS">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" name="DOCUMENT">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DOCUMENTNUMBER" type="xs:unsignedInt" />
+                          <xs:element name="DOCUMENTDATE" type="xs:string" />
+                          <xs:element name="CURRCODE" type="xs:string" />
+                          <xs:element name="PAYER" type="xs:string" />
+                          <xs:element name="PAYERUNN" type="xs:string" />
+                          <xs:element name="PAYERBANKBIC" type="xs:unsignedInt" />
+                          <xs:element name="PAYERBANKNAME" type="xs:string" />
+                          <xs:element name="PAYERACCOUNT" type="xs:unsignedLong" />
+                          <xs:element name="BENEFICIAR" type="xs:string" />
+                          <xs:element name="BENEFICIARUNN" type="xs:string" />
+                          <xs:element name="BENEFICIARBANKBIC" type="xs:string" />
+                          <xs:element name="BENEFICIARBANKNAME" type="xs:string" />
+                          <xs:element name="BENEFICIARACCOUNT" type="xs:string" />
+                          <xs:element name="AMOUNT" type="xs:string" />
+                          <xs:element name="AMOUNTNAT" type="xs:unsignedInt" />
+                          <xs:element name="GROUND" type="xs:string" />
+                          <xs:element name="GROUNDADD" type="xs:string" />
+                          <xs:element name="DOCUMENTTYPE" type="xs:string" />
+                          <xs:element name="PAYMENTURGENT" type="xs:string" />
+                          <xs:element name="STATEPAY" />
+                          <xs:element name="FORWHOMEUNN" />
+                          <xs:element name="FORWHOMESTATEPAY" />
+                          <xs:element name="CORRESPBANKBIC" />
+                          <xs:element name="CORRESPBANKNAME" />
+                          <xs:element name="CORRESPBANKCORRACCOUNT" />
+                          <xs:element name="RECEIVERBANKBIC" />
+                          <xs:element name="RECEIVERBANKNAME" />
+                          <xs:element name="RECEIVERBANKCORRACCOUNT" />
+                          <xs:element name="BANKOFFICIALS" type="xs:string" />
+                          <xs:element name="VALUEDATE" type="xs:string" />
+                          <xs:element name="NOTEFROMBANK" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
