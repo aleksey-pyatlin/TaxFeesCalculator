@@ -106,7 +106,7 @@ namespace FeesCalculator.BussinnesLogic
             SellPayment payment = GetRemainCalc(sellMessage.Date) as SellPayment;
             if (payment == null)
             {
-                PaymentOperations.AddRemain(sellMessage.Date, _quarterContainer, _rateManager);
+                PaymentOperations.AddRemain(sellMessage as SellMessage, sellMessage.Date, _quarterContainer, _rateManager);
             }
         }
 

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.Data;
 
 namespace FeesCalculator.BussinnesLogic
 {
     public static class PaymentOperations
     {
-        public static void AddRemain(DateTime remainDate, QuarterContainer quarterContainer,
-                                     IRateManager rateManager)
+        public static void AddRemain(SellMessage sellMessage, DateTime remainDate, QuarterContainer quarterContainer, IRateManager rateManager)
         {
             SellPayment payment = new SellPayment()
                                       {
@@ -26,8 +26,14 @@ namespace FeesCalculator.BussinnesLogic
                     payment.PreviousPayment = lastRetainPaymentFromPreviousQuarter;
                 }
             }
-            decimal amount = GetDebitAmount(payment);
-            payment.Amount = amount;
+
+            if (remainDate.Year > 2012 && sellMessage != null)
+                payment.Amount = sellMessage.Amount;
+            else
+            {
+                decimal amount = GetDebitAmount(payment);
+                payment.Amount = amount;
+            }
 
             if (payment.Amount < 0)
             {
@@ -49,6 +55,9 @@ namespace FeesCalculator.BussinnesLogic
 
         public static void AddRemain(DateTime remainDate, Quarter quarter, IRateManager rateManager)
         {
+            if(remainDate.Year > 2012)
+                return;
+
             SellPayment payment = new SellPayment()
             {
                 Date = remainDate,
