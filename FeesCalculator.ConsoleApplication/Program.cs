@@ -20,8 +20,8 @@ namespace FeesCalculator.ConsoleApplication
             var rateManager = new RateManager();
             
             var profiles = new List<ITaxFeesProfile>();
-            var apProfile = false;
-            if (apProfile)
+            const bool useAPProfile = false;
+            if (useAPProfile)
             {
                 profiles.Add(new APTaxFeesProfile(rateManager, helperUtils));
             }

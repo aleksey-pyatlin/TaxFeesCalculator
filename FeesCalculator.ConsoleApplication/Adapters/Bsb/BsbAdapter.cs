@@ -333,8 +333,8 @@ namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
                                      {
                                          SellMessage sellMessage = x as SellMessage;
                                          calSummary += (x.Amount*x.Rate);
-                                         if (sellMessage != null)
-                                             calSummary -= sellMessage.Commission;
+//                                         if (sellMessage != null)
+//                                             calSummary -= sellMessage.Commission;
                                      });
             return summary == calSummary;
        }
