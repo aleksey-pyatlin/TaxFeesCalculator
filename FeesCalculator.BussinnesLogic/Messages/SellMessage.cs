@@ -18,7 +18,7 @@ namespace FeesCalculator.BussinnesLogic.Messages
         [JsonConverter(typeof(StringEnumConverter))]
         public SellType SellType { get; set; }
 
-        public String Comment
+        public override String Comment
         {
             get
             {

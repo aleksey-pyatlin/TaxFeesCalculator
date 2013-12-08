@@ -9,7 +9,7 @@ namespace FeesCalculator.BussinnesLogic.Messages
     public class IncommingPaymentMessage : OperationMessage
     {
         public IncommingPaymentMessage()
-            : base(OperationMessageType.Incomme)
+            : base(OperationMessageType.Income)
         {
         }
 

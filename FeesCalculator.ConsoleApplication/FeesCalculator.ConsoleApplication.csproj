@@ -68,6 +68,7 @@
     <Compile Include="Adapters\RateInfo.cs" />
     <Compile Include="Adapters\MtbAdapter.cs" />
     <Compile Include="Adapters\SimplePaymentAdapter.cs" />
+    <Compile Include="Configuration\BaseTaxFeesProfile.cs" />
     <Compile Include="Profiles\APTaxFeesProfile.cs" />
     <Compile Include="Configuration\Bsb\BsbAdapterConfigurator.cs" />
     <Compile Include="Configuration\IAdapterConfiguration.cs" />
@@ -86,25 +87,13 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\Bsb\3013008537003 _bsb_2010_year.xlsx" />
-    <None Include="Data\Bsb\3013008537003 _bsb_2011_year.xlsx" />
-    <None Include="Data\Bsb\3013008537016 _bsb_2010_year.xlsx" />
-    <None Include="Data\Bsb\3013008537016 _bsb_2011_year.xlsx" />
-    <None Include="Data\Bsb\3013008537032 _bsb_2010_year.xlsx" />
-    <None Include="Data\Bsb\3013008537032 _bsb_2011_year.xlsx" />
-    <None Include="Data\Bsb\csv\incomming\3013008537032 _bsb_2010_year.csv" />
-    <None Include="Data\Bsb\csv\incomming\3013008537032 _bsb_2011_year.csv" />
-    <None Include="Data\Bsb\csv\sells\3013008537003 _bsb_2010_year.csv" />
-    <None Include="Data\Bsb\csv\sells\3013008537003 _bsb_2011_year.csv" />
-    <None Include="Data\Bsb\csv\sells\free\3013008537016 _bsb_2010_year.csv" />
-    <None Include="Data\Bsb\csv\sells\free\3013008537016 _bsb_2011_year.csv" />
+    <None Include="Data\Profiles\Aleksey.Pyatlin.profile.json" />
+    <None Include="Data\SimpleAdapter\3_Quarter_2012.json" />
+    <None Include="Data\SimpleAdapter\3_Quater_2013.json" />
     <None Include="Schema\Mtb\payments.xsd">
       <SubType>Designer</SubType>
       <Generator>Mgmtclassgen.exe</Generator>
     </None>
-    <None Include="Data\Rates\2010_usd_currecyRate.csv" />
-    <None Include="Data\Rates\2011_usd_currecyRate.csv" />
-    <None Include="Data\Rates\2012_usd_currecyRate.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,19 +105,6 @@
       <Project>{73561751-9BAE-4A68-96CE-7B328563FBAC}</Project>
       <Name>FeesCalculator.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Data\Mtb\20120720.xml" />
-    <Content Include="Data\Mtb\20120720_only_fees.xml" />
-    <Content Include="Data\Mtb\20120923.xml" />
-    <Content Include="Data\Mtb\20121017.xml" />
-    <Content Include="Data\Mtb\20130108.xml" />
-    <Content Include="Data\Mtb\20130409.xml" />
-    <Content Include="Data\Mtb\20130717.xml" />
-    <Content Include="Data\Mtb\20130909.xml" />
-    <Content Include="Data\Mtb\20130930.xml" />
-    <Content Include="Data\Mtb\mtb_data.xml" />
-    <Content Include="Data\Mtb\mtb_data_21_03_2012_to_19_04_2012.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ namespace FeesCalculator.BussinnesLogic.Messages
     public enum OperationMessageType
     {
         Sell = 1,
-        Incomme = 2,
+        Income = 2,
         Tax = 4,
         OutOfProfit = 8
     }

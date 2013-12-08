@@ -15,6 +15,8 @@ namespace FeesCalculator.BussinnesLogic.Messages
 
         [JsonConverter(typeof(StringEnumConverter))]
         public  OperationMessageType Type { get; set; }
+
+        [JsonProperty(Required = Required.Always)]
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
 
@@ -25,5 +27,12 @@ namespace FeesCalculator.BussinnesLogic.Messages
         {
             return String.Format("{0} - {1}", Date, Amount);
         }
+
+        [JsonProperty(Required = Required.Always)]
+        [DefaultValue("")]
+        public String RefDocument { get; set; }
+
+        [DefaultValue(null)]
+        public virtual String Comment { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FeesCalculator.BussinnesLogic;
-using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.ConsoleApplication.Adapters;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration;
@@ -10,13 +9,12 @@ using FeesCalculator.ConsoleApplication.Utils;
 
 namespace FeesCalculator.ConsoleApplication.Profiles
 {
-    public class APTaxFeesProfile : ITaxFeesProfile
+    public class APTaxFeesProfile : BaseTaxFeesProfile
     {
         private readonly string _dataDirectoryPath;
         private readonly IRateManager _rateManager;
         private readonly IHelperUtils _helperUtils;
-        private AdaptersConfigurator _adaptersConfigurator;
-
+       
         public APTaxFeesProfile(IRateManager rateManager,
             IHelperUtils helperUtils)
         {
@@ -26,22 +24,9 @@ namespace FeesCalculator.ConsoleApplication.Profiles
             this._helperUtils = helperUtils;
         }
 
-        public IEnumerable<OperationMessage> GetOperations()
+        public override void Init()
         {
-            List<OperationMessage> operationMessages = new List<OperationMessage>();
-            foreach (var configuration in _adaptersConfigurator.Configurations)
-            {
-                IAdapterConfiguration adapterConfiguration = configuration.Configurator;
-                IAdapter adapter = configuration.Adapter(adapterConfiguration);
-                operationMessages.AddRange(adapter.GetMessages(adapterConfiguration.RootFolder, 
-                    configuration.Files));
-            }
-
-            return operationMessages;
-        }
-
-        public void Init()
-        {
+            base.Init();
             _rateManager.ImportRates(_helperUtils.GetPath(_dataDirectoryPath,
                 @"Rates\2010_usd_currecyRate.csv"));
             _rateManager.ImportRates(_helperUtils.GetPath(_dataDirectoryPath,
@@ -50,8 +35,8 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                 @"Rates\2012_usd_currecyRate.csv"));
             
             //--------------------------------------------------
-            _adaptersConfigurator = new AdaptersConfigurator();
-            _adaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
+            
+            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
             {
                 Configurator = new MtbAdapterConfigurator
                 {
@@ -75,7 +60,7 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                 })
             });
 
-            _adaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
+            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
             {
                 Configurator = new BsbAdapterConfigurator
                 {

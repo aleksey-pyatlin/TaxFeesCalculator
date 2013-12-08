@@ -13,6 +13,7 @@ namespace FeesCalculator.ConsoleApplication.Profiles
 {
     public class SampleTaxFeesProfile : ITaxFeesProfile
     {
+        
         private readonly RateManager _rateManager;
         private readonly IHelperUtils _helperUtils;
 
@@ -44,6 +45,7 @@ namespace FeesCalculator.ConsoleApplication.Profiles
 
         private IEnumerable<OperationMessage> GetOperationsFor3Quarter2013()
         {
+            int refDocument = 10;
             const int firstIncomeAmount = 1500;
             var firstIncomeDate = new DateTime(2013, 9, 2);
             var mandatorySellaryDate = new DateTime(2013, 9, 9);
@@ -56,33 +58,39 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                 {
                     Amount = firstIncomeAmount,
                     Date = firstIncomeDate,
-                    Rate = _rateManager.GetNationalRate(firstIncomeDate)
+                    Rate = _rateManager.GetNationalRate(firstIncomeDate), 
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.3),
                     Date = mandatorySellaryDate,
-                    SellType = SellType.Mandatory
+                    SellType = SellType.Mandatory,
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.4),
                     Date = freeSellaryDate,
                     SellType = SellType.Free,
-                    Rate = _rateManager.GetNationalRate(freeSellaryDate) + 100 // national rate + 100 rubley - simulate free sellary with benefit
+                    Rate = _rateManager.GetNationalRate(freeSellaryDate) + 100, // national rate + 100 rubley - simulate free sellary with benefit
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.2),
                     Date = freeSellaryDate2,
                     SellType = SellType.Free,
-                    Rate = _rateManager.GetNationalRate(freeSellaryDate2) - 100 // national rate + 100 rubley - simulate free sellary without benefits
+                    Rate = _rateManager.GetNationalRate(freeSellaryDate2) - 100, // national rate + 100 rubley - simulate free sellary without benefits
+                    RefDocument = refDocument++.ToString()
                 },
                 new TaxSellMessage()
                             {
                                 Amount = 190000,
                                 QuarterType = QuarterType.Three,
-                                YearNumber = 2013
+                                YearNumber = 2013,
+                                RefDocument = "12",
+                                Date = freeSellaryDate2.AddDays(10)
                             }
             };
 
@@ -90,6 +98,7 @@ namespace FeesCalculator.ConsoleApplication.Profiles
 
         private IEnumerable<OperationMessage> GetOperationsFor3Quarter2012()
         {
+            int refDocument = 100;
             const int firstIncomeAmount = 1000;
             var firstIncomeDate = new DateTime(2012, 9, 2);
             var mandatorySellaryDate = new DateTime(2012, 9, 9);
@@ -102,33 +111,39 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                 {
                     Amount = firstIncomeAmount,
                     Date = firstIncomeDate,
-                    Rate = _rateManager.GetNationalRate(firstIncomeDate)
+                    Rate = _rateManager.GetNationalRate(firstIncomeDate),
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.3),
                     Date = mandatorySellaryDate,
-                    SellType = SellType.Mandatory
+                    SellType = SellType.Mandatory,
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.4),
                     Date = freeSellaryDate,
                     SellType = SellType.Free,
-                    Rate = _rateManager.GetNationalRate(freeSellaryDate) + 100 // national rate + 100 rubley - simulate free sellary with benefit
+                    Rate = _rateManager.GetNationalRate(freeSellaryDate) + 100, // national rate + 100 rubley - simulate free sellary with benefit
+                    RefDocument = refDocument++.ToString()
                 },
                 new SellMessage()
                 {
                     Amount = (decimal) (firstIncomeAmount*0.2),
                     Date = freeSellaryDate2,
                     SellType = SellType.Free,
-                    Rate = _rateManager.GetNationalRate(freeSellaryDate2) - 100 // national rate + 100 rubley - simulate free sellary without benefits
+                    Rate = _rateManager.GetNationalRate(freeSellaryDate2) - 100, // national rate + 100 rubley - simulate free sellary without benefits
+                    RefDocument = refDocument++.ToString()
                 },
                 new TaxSellMessage()
                             {
                                 Amount = 100000,
                                 QuarterType = QuarterType.Three,
-                                YearNumber = 2012
+                                YearNumber = 2012,
+                                RefDocument = refDocument++.ToString(),
+                                Date = freeSellaryDate2.AddDays(10)
                             }
             };
         }

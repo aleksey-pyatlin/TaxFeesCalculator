@@ -9,6 +9,7 @@ using FeesCalculator.ConsoleApplication.Adapters.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration;
 using FeesCalculator.ConsoleApplication.Profiles;
 using FeesCalculator.ConsoleApplication.Utils;
+using Newtonsoft.Json;
 
 namespace FeesCalculator.ConsoleApplication
 {
@@ -20,13 +21,20 @@ namespace FeesCalculator.ConsoleApplication
             var rateManager = new RateManager();
             
             var profiles = new List<ITaxFeesProfile>();
+            
+            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
+            jsonSerializerSettings.Converters.Add
+                (new Newtonsoft.Json.Converters.StringEnumConverter());
+            
             const bool useAPProfile = false;
             if (useAPProfile)
             {
-                profiles.Add(new APTaxFeesProfile(rateManager, helperUtils));
+                var apProfile = new APTaxFeesProfile(rateManager, helperUtils);
+                profiles.Add(apProfile);
             }
 
-            profiles.Add(new SampleTaxFeesProfile(rateManager, helperUtils));
+            SampleTaxFeesProfile sampleTaxFeesProfile = new SampleTaxFeesProfile(rateManager, helperUtils);
+            profiles.Add(sampleTaxFeesProfile);
             Run(profiles, rateManager);
         }
 
