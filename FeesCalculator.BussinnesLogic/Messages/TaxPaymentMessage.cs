@@ -1,12 +1,11 @@
 using System;
-using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.Data;
 
-namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
+namespace FeesCalculator.BussinnesLogic.Messages
 {
-    public class TaxSellMessage : OperationMessage
+    public class TaxPaymentMessage : OperationMessage
     {
-        public TaxSellMessage(): base(OperationMessageType.Tax)
+        public TaxPaymentMessage(): base(OperationMessageType.Tax)
         {
             
         }

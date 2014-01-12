@@ -8,13 +8,9 @@ namespace FeesCalculator.ConsoleApplication.Configuration
     {
         public AdaptersConfigurator AdaptersConfigurator { get; set; }
 
-        public BaseTaxFeesProfile()
+        public virtual void Init(AdaptersConfigurator adaptersConfigurator)
         {
-            AdaptersConfigurator = new AdaptersConfigurator();
-        }
-
-        public virtual void Init()
-        {
+            AdaptersConfigurator = adaptersConfigurator;
         }
 
         public virtual IEnumerable<OperationMessage> GetOperations()

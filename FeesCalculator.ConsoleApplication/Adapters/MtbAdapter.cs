@@ -164,7 +164,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                         if (document.GROUND.StartsWith("Налог по упрощённой системе налогообложения", StringComparison.InvariantCultureIgnoreCase))
                         {
                             TaxInfo taxInfo = GetTaxInfo(document.GROUND);
-                            messages.Add(new TaxSellMessage()
+                            messages.Add(new TaxPaymentMessage()
                             {
                                 Amount = decimal.Parse(document.AMOUNT, cultureInfo),
                                 QuarterType = taxInfo.QuarterType,

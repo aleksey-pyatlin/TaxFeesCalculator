@@ -63,18 +63,22 @@
     <Compile Include="Adapters\Bsb\BsbSummary.cs" />
     <Compile Include="Adapters\Bsb\Filter.cs" />
     <Compile Include="Adapters\Bsb\TaxInfo.cs" />
-    <Compile Include="Adapters\Bsb\TaxSellMessage.cs" />
     <Compile Include="Adapters\IAdapter.cs" />
     <Compile Include="Adapters\RateInfo.cs" />
     <Compile Include="Adapters\MtbAdapter.cs" />
-    <Compile Include="Adapters\SimplePaymentAdapter.cs" />
+    <Compile Include="Adapters\JsonPaymentAdapter.cs" />
+    <Compile Include="Configuration\AdapterFactory.cs" />
+    <Compile Include="Configuration\BaseAdapterConfiguration.cs" />
     <Compile Include="Configuration\BaseTaxFeesProfile.cs" />
+    <Compile Include="Configuration\Common\JsonAdapterConfigurator.cs" />
+    <Compile Include="Configuration\ProfileFactory.cs" />
+    <Compile Include="Utils\JsonUtils.cs" />
     <Compile Include="Profiles\APTaxFeesProfile.cs" />
     <Compile Include="Configuration\Bsb\BsbAdapterConfigurator.cs" />
     <Compile Include="Configuration\IAdapterConfiguration.cs" />
     <Compile Include="Configuration\Mtb\MtbAdapterConfigurator.cs" />
     <Compile Include="Configuration\ITaxFeesProfile.cs" />
-    <Compile Include="Profiles\SampleTaxFeesProfile.cs" />
+    <Compile Include="Profiles\JsonTaxFeesProfile.cs" />
     <Compile Include="Utils\HelperUtils.cs" />
     <Compile Include="Utils\IHelperUtils.cs" />
     <Compile Include="Schema\Mtb\payments.designer.cs" />
@@ -88,6 +92,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Data\Profiles\Aleksey.Pyatlin.profile.json" />
+    <None Include="Data\Profiles\Jon.Doe.Profile.json" />
     <None Include="Data\SimpleAdapter\3_Quarter_2012.json" />
     <None Include="Data\SimpleAdapter\3_Quater_2013.json" />
     <None Include="Schema\Mtb\payments.xsd">

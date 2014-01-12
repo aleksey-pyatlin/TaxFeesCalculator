@@ -4,6 +4,7 @@ using FeesCalculator.ConsoleApplication.Adapters;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration;
 using FeesCalculator.ConsoleApplication.Configuration.Bsb;
+using FeesCalculator.ConsoleApplication.Configuration.Common;
 using FeesCalculator.ConsoleApplication.Configuration.Mtb;
 using FeesCalculator.ConsoleApplication.Utils;
 
@@ -24,9 +25,9 @@ namespace FeesCalculator.ConsoleApplication.Profiles
             this._helperUtils = helperUtils;
         }
 
-        public override void Init()
+        public override void Init(AdaptersConfigurator adaptersConfigurator)
         {
-            base.Init();
+            base.Init(adaptersConfigurator);
             _rateManager.ImportRates(_helperUtils.GetPath(_dataDirectoryPath,
                 @"Rates\2010_usd_currecyRate.csv"));
             _rateManager.ImportRates(_helperUtils.GetPath(_dataDirectoryPath,
@@ -35,9 +36,10 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                 @"Rates\2012_usd_currecyRate.csv"));
             
             //--------------------------------------------------
-            
-            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
+
+            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<BaseAdapterConfiguration>
             {
+                Factory = AdapterFactory.MtbBsClnt,
                 Configurator = new MtbAdapterConfigurator
                 {
                     RootFolder = _helperUtils.GetPath(_dataDirectoryPath, @"Mtb")
@@ -56,12 +58,14 @@ namespace FeesCalculator.ConsoleApplication.Profiles
                     @"20130409.xml",
                     @"20130717.xml",
                     @"20130909.xml",
-                    @"20130930.xml"
+                    @"20130930.xml",
+                    @"20131231.xml"
                 })
             });
 
-            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<IAdapterConfiguration>
+            AdaptersConfigurator.Configurations.Add(new AdapterConfiguration<BaseAdapterConfiguration>
             {
+                Factory = AdapterFactory.BsbHtmlExportCsvImport,
                 Configurator = new BsbAdapterConfigurator
                 {
                     BsbIncommingPaymentsPath = new[]

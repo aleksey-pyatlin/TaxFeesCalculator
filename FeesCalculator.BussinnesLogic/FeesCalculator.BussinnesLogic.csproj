@@ -48,10 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrivalConsumptionManager.cs" />
+    <Compile Include="Exceptions\MissingInternetConnection.cs" />
     <Compile Include="FinancialYear.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="Messages\OperationMessageContainer.cs" />
     <Compile Include="Messages\OperationMessageType.cs" />
     <Compile Include="Messages\OutOfProfitMessage.cs" />
+    <Compile Include="Messages\TaxPaymentMessage.cs" />
     <Compile Include="Reports\ArrivalConsumptionPresentation.cs" />
     <Compile Include="Calendar.cs" />
     <Compile Include="Reports\Column.cs" />

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using FeesCalculator.BussinnesLogic.Exceptions;
 using FeesCalculator.BussinnesLogic.Service_References.ExRatesServiceReference;
 
 namespace FeesCalculator.BussinnesLogic
@@ -32,15 +33,23 @@ namespace FeesCalculator.BussinnesLogic
 
         private Decimal AddFromWeb(DateTime rateDate)
         {
-            ExRatesSoapClient exRatesSoapClient = new ExRatesSoapClient();
-            var result = exRatesSoapClient.ExRatesDyn(145, rateDate, rateDate);
-            if(result != null)
+            try
             {
-                var value = result.Tables[0].Rows[0][1];
-                return Decimal.Parse(value.ToString());
+                ExRatesSoapClient exRatesSoapClient = new ExRatesSoapClient();
+                var result = exRatesSoapClient.ExRatesDyn(145, rateDate, rateDate);
+                if (result != null)
+                {
+                    var value = result.Tables[0].Rows[0][1];
+                    return Decimal.Parse(value.ToString());
+                }
+
+                return 0;
+            }
+            catch (Exception)
+            {
+                throw new MissingInternetConnectionException();
             }
             
-            return 0;
         }
 
         public void ImportRates(string importFilePath)

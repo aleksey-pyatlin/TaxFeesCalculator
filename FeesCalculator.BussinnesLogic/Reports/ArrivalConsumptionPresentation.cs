@@ -206,37 +206,32 @@ namespace FeesCalculator.BussinnesLogic.Reports
                 calcFees += quarter.Value.CalcFees;
             }
 
-            Console.Write("WITHOUT LAST QUARTER \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\t".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount));
-            var delta = paidTaxAmount - calcFees;
+//            Console.Write("WITHOUT LAST QUARTER \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\t".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount));
+//            var delta = paidTaxAmount - calcFees;
+//            
+//            if(delta < 0)
+//                Console.WriteLine("Need pay: {0}", DataFormatter.ToDecimal(delta));
+//            else
+//            {
+//                Console.WriteLine("Over paid: {0}", DataFormatter.ToDecimal(delta));
+//            }
+//            var quarter2Key = new QuarterKey()
+//            {
+//                Type = QuarterType.Four,
+//                YearNumber = 2011
+//            };
+//
+//            if (quarters.ContainsKey(quarter2Key))
+//            {
+//                Quarter quarter2 = quarters[quarter2Key];
+//                paidTaxAmount += quarter2.PaidTaxAmount;
+//                calcFees += quarter2.CalcFees;
+//            }
+//            
+//            Console.WriteLine("FINAL \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\tNeed pay: {2}".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount), DataFormatter.ToDecimal(paidTaxAmount - calcFees));
+
+            PrintInfoByYear(quarters);
             
-            if(delta < 0)
-                Console.WriteLine("Need pay: {0}", DataFormatter.ToDecimal(delta));
-            else
-            {
-                Console.WriteLine("Over paid: {0}", DataFormatter.ToDecimal(delta));
-            }
-            var quarter2Key = new QuarterKey()
-            {
-                Type = QuarterType.Four,
-                YearNumber = 2011
-            };
-
-            if (quarters.ContainsKey(quarter2Key))
-            {
-                Quarter quarter2 = quarters[quarter2Key];
-                paidTaxAmount += quarter2.PaidTaxAmount;
-                calcFees += quarter2.CalcFees;
-            }
-            
-            Console.WriteLine("FINAL \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\tNeed pay: {2}".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount), DataFormatter.ToDecimal(paidTaxAmount - calcFees));
-
-            Console.WriteLine("\r\nBY YEARS:");
-            PrintTaxInfo(quarters, 2009);
-            PrintTaxInfo(quarters, 2010);
-            PrintTaxInfo(quarters, 2011);
-            PrintTaxInfo(quarters, 2012);
-            PrintTaxInfo(quarters, 2013);
-
 
             decimal totalProfit = 0;
             foreach (var quarter in quarters)
@@ -266,6 +261,16 @@ namespace FeesCalculator.BussinnesLogic.Reports
             }
         }
 
+        private void PrintInfoByYear(Dictionary<QuarterKey, Quarter> quarters)
+        {
+            Console.WriteLine("\r\n******************************************");
+            Console.WriteLine("\r\nFINAL INFO BY YEARS:");
+            foreach (var quarter in quarters)
+            {
+                PrintTaxInfo(quarters, quarter.Key.YearNumber);
+            }
+        }
+
         private void PrintTaxInfo(Dictionary<QuarterKey, Quarter> quarters, int year)
         {
             decimal paidTaxAmount = 0;
@@ -281,12 +286,8 @@ namespace FeesCalculator.BussinnesLogic.Reports
             Console.Write("YEAR {2} \r\n\tCalc: {0} \r\n\tPaid: {1} \r\n\t".ToUpper(), DataFormatter.ToDecimal(calcFees), DataFormatter.ToDecimal(paidTaxAmount), year);
             var delta = paidTaxAmount - calcFees;
 
-            if (delta < 0)
-                Console.WriteLine("Need pay: {0}", DataFormatter.ToDecimal(delta));
-            else
-            {
-                Console.WriteLine("Over paid: {0}", DataFormatter.ToDecimal(delta));
-            }
+            Console.Write(delta < 0 ? "Need pay: " : "Over paid: ");
+            PrintDeltaWithNotification(delta);
         }
 
         private void PrintTotal(List<Column<Payment>> columns, List<Column<SellPayment>> creditColumns, KeyValuePair<QuarterKey, Quarter> quarter)
@@ -320,14 +321,14 @@ namespace FeesCalculator.BussinnesLogic.Reports
             Console.Write(" Delta: ");
 
             var delta = quarter.Value.PaidTaxAmount - calcFees;
-            if(delta > 0)
-                PrintColor(ConsoleColor.Green, true, "{0}", delta);
-            else
-            {
-                PrintColor(ConsoleColor.Red, true, "{0}", delta);
-            }
-
+            PrintDeltaWithNotification(delta);
+            
             quarter.Value.CalcFees = calcFees;
+        }
+
+        private void PrintDeltaWithNotification(decimal delta)
+        {
+            PrintColor(delta > 0 ? ConsoleColor.Green : ConsoleColor.Red, true, "{0}", delta);
         }
 
         private void PrintColor(ConsoleColor color, bool newLine, string message, params object[] parameters)

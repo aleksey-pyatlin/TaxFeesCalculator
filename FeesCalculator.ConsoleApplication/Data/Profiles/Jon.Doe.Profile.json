@@ -1,0 +1,14 @@
+{
+  "Configurations": [
+    {
+	  "Factory": "JsonFeesCalc",
+      "Configurator": {
+        "RootFolder": "..\\..\\..\\FeesCalculator.ConsoleApplication\\Data\\SimpleAdapter",
+      },
+      "Files": [
+        "3_Quarter_2012.json",
+        "3_Quater_2013.json"
+      ]
+    }
+  ]
+}

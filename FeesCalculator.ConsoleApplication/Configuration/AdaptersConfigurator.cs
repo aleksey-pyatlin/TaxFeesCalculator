@@ -6,9 +6,9 @@ namespace FeesCalculator.ConsoleApplication.Configuration
     {
         public AdaptersConfigurator()
         {
-            Configurations = new List<AdapterConfiguration<IAdapterConfiguration>>();
+            Configurations = new List<AdapterConfiguration<BaseAdapterConfiguration>>();
         }
 
-        public List<AdapterConfiguration<IAdapterConfiguration>> Configurations { get; set; }
+        public List<AdapterConfiguration<BaseAdapterConfiguration>> Configurations { get; set; }
     }
 }

@@ -154,7 +154,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
                         if (bsbOperation.Description.StartsWith("Налог по упрощённой системе налогообложения", StringComparison.InvariantCultureIgnoreCase))
                         {
                             TaxInfo taxInfo = GetTaxInfo(bsbOperation.Description);
-                            messages.Add(new TaxSellMessage()
+                            messages.Add(new TaxPaymentMessage()
                                          {
                                              Amount = GetAmount(bsbOperation.Content, 5),
                                              QuarterType = taxInfo.QuarterType,

@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using FeesCalculator.BussinnesLogic;
+using FeesCalculator.BussinnesLogic.Exceptions;
 using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.BussinnesLogic.Reports;
-using FeesCalculator.ConsoleApplication.Adapters.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration;
-using FeesCalculator.ConsoleApplication.Profiles;
 using FeesCalculator.ConsoleApplication.Utils;
-using Newtonsoft.Json;
 
 namespace FeesCalculator.ConsoleApplication
 {
@@ -17,25 +13,36 @@ namespace FeesCalculator.ConsoleApplication
     {
         public static void Main(string[] args)
         {
-            IHelperUtils helperUtils = new HelperUtils();
-            var rateManager = new RateManager();
-            
-            var profiles = new List<ITaxFeesProfile>();
-            
-            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
-            jsonSerializerSettings.Converters.Add
-                (new Newtonsoft.Json.Converters.StringEnumConverter());
-            
-            const bool useAPProfile = false;
-            if (useAPProfile)
+            WrapExceptionHadnling(delegate() 
             {
-                var apProfile = new APTaxFeesProfile(rateManager, helperUtils);
-                profiles.Add(apProfile);
-            }
+                IHelperUtils helperUtils = new HelperUtils();
+                var rateManager = new RateManager();
+                var profiles = new List<ITaxFeesProfile>();
 
-            SampleTaxFeesProfile sampleTaxFeesProfile = new SampleTaxFeesProfile(rateManager, helperUtils);
-            profiles.Add(sampleTaxFeesProfile);
-            Run(profiles, rateManager);
+                //TODO: Move this setting to command line parameter - /profile:"..\..\Data\Profiles\Jon.Doe.Profile.json"
+                const string profilePath = @"..\..\Data\Profiles\Jon.Doe.Profile.json";
+
+                ITaxFeesProfile profile = ProfileFactory.GetProfile(rateManager, helperUtils, profilePath);
+                profiles.Add(profile);
+
+                Run(profiles, rateManager);
+            });
+        }
+
+        private static void WrapExceptionHadnling(Action action)
+        {
+            try
+            {
+                action.Invoke();
+            }
+            catch (MissingInternetConnectionException missingInternetConnectionException)
+            {
+                Console.WriteLine("Error: {0}", missingInternetConnectionException);
+            }
+            catch (Exception exception)
+            {
+                throw;
+            }
         }
 
         private static void Run(IEnumerable<ITaxFeesProfile> profiles, RateManager rateManager)
@@ -43,7 +50,6 @@ namespace FeesCalculator.ConsoleApplication
             var operationMessages = new List<OperationMessage>();
             foreach (var profile in profiles)
             {
-                profile.Init();
                 operationMessages.AddRange(profile.GetOperations());
             }
 
@@ -62,7 +68,7 @@ namespace FeesCalculator.ConsoleApplication
         {
             foreach (OperationMessage operationMessage in operationMessages)
             {
-                var taxSellMessage = operationMessage as TaxSellMessage;
+                var taxSellMessage = operationMessage as TaxPaymentMessage;
                 if (taxSellMessage != null)
                 {
                     var quarterKey = new QuarterKey

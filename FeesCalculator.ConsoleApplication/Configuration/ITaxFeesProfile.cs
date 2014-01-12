@@ -5,7 +5,7 @@ namespace FeesCalculator.ConsoleApplication.Configuration
 {
     public interface ITaxFeesProfile
     {
-        void Init();
+        void Init(AdaptersConfigurator adaptersConfigurator);
 
         IEnumerable<OperationMessage> GetOperations();
     }
