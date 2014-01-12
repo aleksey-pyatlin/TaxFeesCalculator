@@ -76,7 +76,7 @@ namespace FeesCalculator.BussinnesLogic
                     return QuarterType.Three;
 
                 case "IV":
-                case "VI":
+                case "VI": //This is fix.
                     return QuarterType.Four;
             }
 

@@ -53,6 +53,8 @@ namespace FeesCalculator.ConsoleApplication
                 operationMessages.AddRange(profile.GetOperations());
             }
 
+            AddNationalRateToIncommingMessages(operationMessages, rateManager);
+
             var arrivalConsumptionManager = new ArrivalConsumptionManager(rateManager);
 
             arrivalConsumptionManager.Calculate(operationMessages);
@@ -61,6 +63,18 @@ namespace FeesCalculator.ConsoleApplication
             var arrivalConsumptionPresentation = new ArrivalConsumptionPresentation();
             AddTaxInfo(operationMessages, arrivalConsumptionManager.Quarters);
             arrivalConsumptionPresentation.Render(arrivalConsumptionManager.Quarters);
+        }
+
+        private static void AddNationalRateToIncommingMessages(List<OperationMessage> operationMessages, RateManager rateManager)
+        {
+            foreach (var operationMessage in operationMessages)
+            {
+                var incommingMessage = operationMessage as IncommingPaymentMessage;
+                if (incommingMessage != null && incommingMessage.Rate <= 0)
+                {
+                    incommingMessage.Rate = rateManager.GetNationalRate(incommingMessage.Date);
+                }
+            }
         }
 
         private static void AddTaxInfo(IEnumerable<OperationMessage> operationMessages,
