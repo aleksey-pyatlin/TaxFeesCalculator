@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommandLine;
 using FeesCalculator.BussinnesLogic;
 using FeesCalculator.BussinnesLogic.Exceptions;
 using FeesCalculator.BussinnesLogic.Messages;
@@ -13,20 +14,29 @@ namespace FeesCalculator.ConsoleApplication
     {
         public static void Main(string[] args)
         {
-            WrapExceptionHadnling(delegate() 
+            RunnerOptions options = new RunnerOptions();
+            Parser parser =new Parser();
+
+            if (parser.ParseArguments(args, options))
             {
-                IHelperUtils helperUtils = new HelperUtils();
-                var rateManager = new RateManager();
-                var profiles = new List<ITaxFeesProfile>();
 
-                //TODO: Move this setting to command line parameter - /profile:"..\..\Data\Profiles\Jon.Doe.Profile.json"
-                const string profilePath = @"..\..\Data\Profiles\Jon.Doe.Profile.json";
+                WrapExceptionHadnling(delegate()
+                {
+                    IHelperUtils helperUtils = new HelperUtils();
+                    var rateManager = new RateManager();
+                    var profiles = new List<ITaxFeesProfile>();
+              
+                    ITaxFeesProfile profile = ProfileFactory.GetProfile(rateManager, helperUtils, options.Profile);
+                    profiles.Add(profile);
 
-                ITaxFeesProfile profile = ProfileFactory.GetProfile(rateManager, helperUtils, profilePath);
-                profiles.Add(profile);
-
-                Run(profiles, rateManager);
-            });
+                    Run(profiles, rateManager);
+                });
+            }
+            else
+            {
+                Console.WriteLine("Error: You have missed a few command line arguments.");
+                Console.WriteLine(options.GetUsage());
+            }
         }
 
         private static void WrapExceptionHadnling(Action action)
