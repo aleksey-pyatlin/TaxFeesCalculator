@@ -23,7 +23,6 @@
       "Type": "Sell",
       "Date": "2013-09-12T00:00:00",
       "Amount": 600.0,
-      "Rate": 9150.00,
       "RefDocument": "12"
     },
     {
@@ -32,7 +31,6 @@
       "Type": "Sell",
       "Date": "2013-09-13T00:00:00",
       "Amount": 300.0,
-      "Rate": 8930.00,
       "RefDocument": "13"
     }
   ],

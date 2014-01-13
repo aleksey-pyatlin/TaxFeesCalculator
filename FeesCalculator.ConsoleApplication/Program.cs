@@ -74,6 +74,12 @@ namespace FeesCalculator.ConsoleApplication
                 {
                     incommingMessage.Rate = rateManager.GetNationalRate(incommingMessage.Date);
                 }
+                
+                var sellMessage = operationMessage as SellMessage;
+                if (sellMessage != null && sellMessage.Rate <= 0)
+                {
+                    sellMessage.Rate = rateManager.GetNationalRate(sellMessage.Date);
+                }
             }
         }
 
