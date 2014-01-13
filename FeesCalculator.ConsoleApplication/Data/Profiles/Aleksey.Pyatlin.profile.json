@@ -1,7 +1,7 @@
 {
-  "AdaptersConfigurator": {
     "Configurations": [
       {
+		"Factory": "MtbBsClnt",
         "Configurator": {
           "RootFolder": "C:\\Users\\Aleksey\\Dropbox\\Payments\\Data\\Mtb"
         },
@@ -20,6 +20,7 @@
         ]
       },
       {
+		"Factory": "BsbHtmlExportCsvImport",
         "Configurator": {
           "BsbFreeSellPaymentsPath": [
             "C:\\Users\\Aleksey\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\free\\3013008537016 _bsb_2010_year.csv",
@@ -36,5 +37,4 @@
         }
       }
     ]
-  }
 }
