@@ -32,6 +32,9 @@ namespace FeesCalculator.BussinnesLogic
                                       Rate = incommingPaymentMessage.Rate,
                                       OperationType = PaymentType.Incomm
                                   };
+            if (incommingPaymentMessage.Date.Year < 2013)
+                AddRemainCalc(incommingPaymentMessage);
+
             Quarter quarter = PaymentOperations.AddToDebit(payment, _quarterContainer, _rateManager);
             quarter.Incomming += payment.Amount*payment.Rate;
         }
