@@ -265,9 +265,14 @@ namespace FeesCalculator.BussinnesLogic.Reports
         {
             Console.WriteLine("\r\n******************************************");
             Console.WriteLine("\r\nFINAL INFO BY YEARS:");
+            List<int> printedYear = new List<int>();
             foreach (var quarter in quarters)
             {
-                PrintTaxInfo(quarters, quarter.Key.YearNumber);
+                if (!printedYear.Contains(quarter.Key.YearNumber))
+                {
+                    PrintTaxInfo(quarters, quarter.Key.YearNumber);
+                    printedYear.Add(quarter.Key.YearNumber);
+                }
             }
         }
 
