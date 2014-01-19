@@ -9,7 +9,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 {
     public class JsonPaymentAdapter : IAdapter
     {
-        public List<OperationMessage> GetMessages(string dataDirectoryPath, List<string> files)
+        public IEnumerable<OperationMessage> GetMessages(string dataDirectoryPath, List<string> files)
         {
             var operationMessages = new List<OperationMessage>();
 

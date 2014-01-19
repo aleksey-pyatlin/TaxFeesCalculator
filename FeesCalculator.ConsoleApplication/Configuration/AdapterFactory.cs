@@ -4,6 +4,7 @@
     {
         JsonFeesCalc =1,
         MtbBsClnt = 2,
-        BsbHtmlExportCsvImport =3
+        BsbHtmlExportCsvImport =3,
+        BelSwissClient = 4
     }
 }

@@ -27,6 +27,7 @@ namespace FeesCalculator.ConsoleApplication.Configuration
             {
                 switch (adapterConfiguration.Factory)
                 {
+
                     case AdapterFactory.JsonFeesCalc:
                     {
                         var newadaptersConfigurator = new AdapterConfiguration<BaseAdapterConfiguration>
@@ -84,6 +85,19 @@ namespace FeesCalculator.ConsoleApplication.Configuration
 
                         restoredAdaptersConfigurator.Configurations.Add(newadaptersConfigurator);   
                         
+                        break;
+                    }
+                    case AdapterFactory.BelSwissClient:
+                    {
+                        restoredAdaptersConfigurator.Configurations.Add(new AdapterConfiguration<BaseAdapterConfiguration>()
+                        {
+                            Factory = AdapterFactory.BelSwissClient,
+                            Configurator = new BaseAdapterConfiguration
+                            {
+                                RootFolder = adapterConfiguration.Configurator.RootFolder
+                            },
+                            
+                        });
                         break;
                     }
                     default:

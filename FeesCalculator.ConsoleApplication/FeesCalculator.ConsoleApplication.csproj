@@ -94,6 +94,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Data\Profiles\Vladimir.Makaev.Profile.json" />
     <None Include="Data\Profiles\Aleksey.Pyatlin.profile.json" />
     <None Include="Data\Profiles\Jon.Doe.Profile.json" />
     <None Include="Data\SimpleAdapter\3_Quarter_2012.json" />

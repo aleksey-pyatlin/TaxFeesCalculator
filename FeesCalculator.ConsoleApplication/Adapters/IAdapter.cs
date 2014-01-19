@@ -6,6 +6,6 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 {
     public interface IAdapter
     {
-        List<OperationMessage> GetMessages(String dataDirectoryPath, List<string> files);
+        IEnumerable<OperationMessage> GetMessages(string dataDirectoryPath, List<string> files);
     }
 }

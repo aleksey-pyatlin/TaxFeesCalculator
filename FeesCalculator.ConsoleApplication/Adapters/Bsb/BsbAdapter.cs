@@ -44,7 +44,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters.Bsb
                                              });
         }
 
-        public List<OperationMessage> GetMessages(String dataDirectoryFull, List<string> files)
+        public IEnumerable<OperationMessage> GetMessages(string dataDirectoryFull, List<string> files)
         {
             List<OperationMessage> messages = GetIncommingMessages();
             messages.AddRange(GetTaxgMessages());

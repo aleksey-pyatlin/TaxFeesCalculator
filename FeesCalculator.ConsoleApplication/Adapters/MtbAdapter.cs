@@ -33,7 +33,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
             _filter = new Filter();
         }
 
-        public List<OperationMessage> GetMessages(String dataDirectoryPath, List<string> files)
+        public IEnumerable<OperationMessage> GetMessages(string dataDirectoryPath, List<string> files)
         {
             List<OperationMessage> messages = new List<OperationMessage>();
 
