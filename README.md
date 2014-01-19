@@ -1,4 +1,4 @@
 TaxFeesCalculator
 =================
 
-This project helps to automate tax fees calculation in Belarus for individual entrepreneurs.
+This project helps to automate tax fees calculation in Belarus for individual entrepreneurs how works on export.
