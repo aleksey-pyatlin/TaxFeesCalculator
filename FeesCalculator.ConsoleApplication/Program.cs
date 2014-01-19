@@ -75,7 +75,7 @@ namespace FeesCalculator.ConsoleApplication
             arrivalConsumptionPresentation.Render(arrivalConsumptionManager.Quarters);
         }
 
-        private static void AddNationalRateToIncommingMessages(List<OperationMessage> operationMessages, RateManager rateManager)
+        private static void AddNationalRateToIncommingMessages(IEnumerable<OperationMessage> operationMessages, RateManager rateManager)
         {
             foreach (var operationMessage in operationMessages)
             {

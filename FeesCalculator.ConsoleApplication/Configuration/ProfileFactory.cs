@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FeesCalculator.BussinnesLogic;
+using FeesCalculator.BussinnesLogic.Messages;
 using FeesCalculator.ConsoleApplication.Adapters;
+using FeesCalculator.ConsoleApplication.Adapters.BelSwissClient;
 using FeesCalculator.ConsoleApplication.Adapters.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration.Bsb;
 using FeesCalculator.ConsoleApplication.Configuration.Common;
@@ -89,6 +91,7 @@ namespace FeesCalculator.ConsoleApplication.Configuration
                     }
                     case AdapterFactory.BelSwissClient:
                     {
+                        var files = Directory.GetFiles(adapterConfiguration.Configurator.RootFolder).Select(Path.GetFileName).ToList();
                         restoredAdaptersConfigurator.Configurations.Add(new AdapterConfiguration<BaseAdapterConfiguration>()
                         {
                             Factory = AdapterFactory.BelSwissClient,
@@ -96,7 +99,8 @@ namespace FeesCalculator.ConsoleApplication.Configuration
                             {
                                 RootFolder = adapterConfiguration.Configurator.RootFolder
                             },
-                            
+                            Adapter = (configurator) => new BellswissAdapter(new BellswissBankRecordParser(new BellwissBankExportParser())),
+                            Files = files
                         });
                         break;
                     }

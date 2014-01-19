@@ -61,12 +61,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\BelSwissClient\TokenType.cs" />
     <Compile Include="Adapters\Bsb\BsbAdapter.cs" />
     <Compile Include="Adapters\Bsb\BsbOperation.cs" />
     <Compile Include="Adapters\Bsb\BsbSummary.cs" />
     <Compile Include="Adapters\Bsb\Filter.cs" />
     <Compile Include="Adapters\Bsb\TaxInfo.cs" />
     <Compile Include="Adapters\IAdapter.cs" />
+    <Compile Include="Adapters\BelSwissClient\BellswissAdapter.cs" />
+    <Compile Include="Adapters\BelSwissClient\BellswissBankRecordParser.cs" />
+    <Compile Include="Adapters\BelSwissClient\BellwissBankExportParser.cs" />
+    <Compile Include="Adapters\BelSwissClient\IBellswissBankRecordParser.cs" />
+    <Compile Include="Adapters\BelSwissClient\IBellwissBankExportParser.cs" />
+    <Compile Include="Adapters\BelSwissClient\Record.cs" />
+    <Compile Include="Adapters\BelSwissClient\Token.cs" />
     <Compile Include="Adapters\RateInfo.cs" />
     <Compile Include="Adapters\MtbAdapter.cs" />
     <Compile Include="Adapters\JsonPaymentAdapter.cs" />

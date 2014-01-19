@@ -1,13 +1,10 @@
 {
     "Configurations": [
       {
-		"Factory": "JsonFeesCalc",
+		"Factory": "BelSwissClient",
         "Configurator": {
-          "RootFolder": "C:\Dropbox\Apps\TextFees\"
-        },
-        "Files": [
-			"4thQuater_2013.json",
-        ]
+          "RootFolder": "C:\\Dropbox\\Apps\\TextFees\\",
+        }
       }
     ]
 }
