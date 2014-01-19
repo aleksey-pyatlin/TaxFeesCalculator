@@ -155,3 +155,4 @@ node_modules/
 public/app
 tscommand.tmp.txt
 settings.properties.bat
+*.settings.properties.bat
