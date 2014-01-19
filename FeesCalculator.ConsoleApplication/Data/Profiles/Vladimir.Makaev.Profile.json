@@ -1,0 +1,13 @@
+{
+    "Configurations": [
+      {
+		"Factory": "JsonFeesCalc",
+        "Configurator": {
+          "RootFolder": "C:\Dropbox\Apps\TextFees\"
+        },
+        "Files": [
+			"4thQuater_2013.json",
+        ]
+      }
+    ]
+}
