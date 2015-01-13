@@ -154,3 +154,5 @@ $RECYCLE.BIN/
 node_modules/
 public/app
 tscommand.tmp.txt
+*/user.settings.properties.bat
+*/user.run.bat
