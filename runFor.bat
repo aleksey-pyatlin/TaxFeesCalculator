@@ -1,8 +1,5 @@
 @echo off
 
-echo 'System settings...'
-call sys.settings.bat
-
 echo 'Load settings...'
 call %1
 
