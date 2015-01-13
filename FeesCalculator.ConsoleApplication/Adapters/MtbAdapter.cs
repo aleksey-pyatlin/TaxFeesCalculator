@@ -20,7 +20,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
         private readonly Filter _filter;
 
         private const String RateInfoPattertn =
-            @"USD\s{0,}(?<Amount>[\d.]{0,})\s{0,}/BYR\s{0,}(?<AmountNat>[\d.]{0,})\s{0,}\w{1,}\s{0,}(?<Rate>[\d.]{0,})\s{0,}";
+            @"USD\s{0,}(?<Amount>[\d.;]{0,})\s{0,}/BYR\s{0,}(?<AmountNat>[\d.]{0,})\s{0,}\w{1,}\s{0,}(?<Rate>[\d.]{0,})\s{0,}";
 
         private const String FreeRateInfoPattern =
             @"–”¡. › ¬. USD\s{0,}(?<Amount>[\d.]{0,})\s{0,}. œŒ  ”–—”\s{0,}(?<Rate>\d{0,})\s{0,}.";
@@ -204,19 +204,52 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                                             Decimal.Parse("4507947", Settings.EngCultureInfo),
                                         Amount = Decimal.Parse("537.3", Settings.EngCultureInfo),
                                     };
+            if (ground == "—Œ√À¿—ÕŒ œŒ–”◊≈Õ»≈ Õ¿ œ–Œƒ¿∆” N 3 Œ“ 20140204.  À»≈Õ“ œﬂ“À»Õ ¿À≈ —≈… œ¿¬ÀŒ¬»◊ »Õƒ»¬»ƒ”¿À‹Õ€… œ–≈ƒœ–»Õ»Ã¿“≈À‹ Ã»Õ—  –≈—œ”¡À» ¿ ¡≈À¿–”—‹. USD 937;5/BYR 9056250  ”–— 9660 ¡≈« Õƒ— ”ƒ≈–∆¿Õ¿  ŒÃ»——»ﬂ ¬ –¿«Ã≈–≈ 18113")
+            {
+                return new RateInfo()
+                {
+                    Rate = Decimal.Parse("9660", Settings.EngCultureInfo),
+                    AmountNat =
+                        Decimal.Parse("9056250", Settings.EngCultureInfo),
+                    Amount = Decimal.Parse("937.5", Settings.EngCultureInfo),
+                };
+            }
 
 
             Regex regex = new Regex(RateInfoPattertn);
             Match match = regex.Match(ground);
-            RateInfo rateInfo = new RateInfo()
-                                    {
-                                        Rate = Decimal.Parse(match.Groups["Rate"].Value, Settings.EngCultureInfo),
-                                        AmountNat =
-                                            Decimal.Parse(match.Groups["AmountNat"].Value, Settings.EngCultureInfo),
-                                        Amount = Decimal.Parse(match.Groups["Amount"].Value, Settings.EngCultureInfo),
-                                    };
+            RateInfo rateInfo;
+            try
+            {
+                rateInfo = new RateInfo()
+                                        {
+                                            Rate =
+                                                Decimal.Parse(
+                                                    match.Groups["Rate"].Value,
+                                                    Settings.EngCultureInfo),
+                                            AmountNat =
+                                                Decimal.Parse(
+                                                    match.Groups["AmountNat"].Value,
+                                                    Settings.EngCultureInfo),
+                                            Amount =
+                                                Decimal.Parse(
+                                                    GetFixedValue(match.Groups["Amount"].Value),
+                                                    Settings.EngCultureInfo),
+                                        };
+            }
+            catch(Exception exc)
+            {
+                throw;
+            }
 
             return rateInfo;
+        }
+
+        private static string GetFixedValue(string value)
+        {
+            if(value.Contains(";"))
+                return value.Replace(";", Settings.EngCultureInfo.NumberFormat.CurrencyDecimalSeparator);
+            return value;
         }
 
         private RateInfo GetFreeSellOperationInfo(string ground)

@@ -7,7 +7,7 @@ namespace FeesCalculator.BussinnesLogic.Reports
     {
         public static decimal GetFeesPercent(KeyValuePair<QuarterKey, Quarter> quarter)
         {
-            if(quarter.Value.Year.Number > 2010 && (int)quarter.Value.Type > 1)
+            if (quarter.Value.Year.Number > 2010 && quarter.Value.Year.Number < 2014 && (int)quarter.Value.Type > 1)
             {
                 return (decimal)0.02;
             }
@@ -20,6 +20,8 @@ namespace FeesCalculator.BussinnesLogic.Reports
                 case 2012:
                 case 2013:
                     return (decimal)0.02;
+                case 2014:
+                    return (decimal)0.05;
             }
 
             throw new Exception(String.Format("For {0} year fees percent is undefined.", quarter.Value.Year.Number));

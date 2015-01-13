@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Mtb\MtbAdapterTests.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
