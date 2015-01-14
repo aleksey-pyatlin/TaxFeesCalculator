@@ -134,7 +134,7 @@ namespace FeesCalculator.BussinnesLogic.Reports
                                                new CreditColumn()
                                                {
                                                    Name = "Rate $",
-                                                   Size = 7,
+                                                   Size = 8,
                                                    CellValue = x =>
                                                                    { 
                                                                        return DataFormatter.ToDecimal(x.Rate);
