@@ -134,7 +134,7 @@ namespace FeesCalculator.BussinnesLogic.Reports
                                                new CreditColumn()
                                                {
                                                    Name = "Rate $",
-                                                   Size = 7,
+                                                   Size = 8,
                                                    CellValue = x =>
                                                                    { 
                                                                        return DataFormatter.ToDecimal(x.Rate);
@@ -381,7 +381,7 @@ namespace FeesCalculator.BussinnesLogic.Reports
                     cellValue = column.CellValue(payment);
                 }
 
-                Print(column.Size, cellValue, color);
+                Print(column.Size, cellValue, color, aligntRight: true);
             }
 
         }
@@ -393,9 +393,11 @@ namespace FeesCalculator.BussinnesLogic.Reports
             Console.WriteLine();
         }
 
-        private void Print(int size, string name, ConsoleColor color = Color)
+        private void Print(int size, string value, ConsoleColor color = Color, bool aligntRight = false)
         {
-            PrintColor(color, false,"| {0} ", name.PadRight(size, ' '));
+            // Considering amounts do not have decimal digits, we don't need to align by dot - just padding left is sufficient
+            var alignedValue = aligntRight ? value.PadLeft(size, ' ') : value.PadRight(size, ' ');
+            PrintColor(color, false, "| {0:} ", alignedValue);
         }
 
     }
