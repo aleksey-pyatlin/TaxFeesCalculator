@@ -40,9 +40,13 @@ namespace FeesCalculator.BussinnesLogic
                 RemoveFromDebit(payment, quarterContainer, rateManager);
             }
 
-            SetDeltaRate(payment, quarter);
+            payment.RateDelta = 0;
+            if (remainDate.Year <= 2012)
+            {
+                SetDeltaRate(payment, quarter);
+            }
+            
         }
-
         private static bool IsFirstRemainPayment(Quarter quarter)
         {
             if(quarter.Debits.Count == 1)
