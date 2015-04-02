@@ -21,12 +21,11 @@ namespace FeesCalculator.BussinnesLogic.Reports
                 case 2013:
                     return (decimal)0.02;
                 case 2014:
+                case 2015:
                     return (decimal)0.05;
             }
 
             throw new Exception(String.Format("For {0} year fees percent is undefined.", quarter.Value.Year.Number));
-
-            return (decimal)0.02;
         }
 
         public static decimal GetDeltaRateFeesPercent(KeyValuePair<QuarterKey, Quarter> quarter)
