@@ -22,6 +22,7 @@ namespace FeesCalculator.BussinnesLogic.Reports
                     return (decimal)0.02;
                 case 2014:
                 case 2015:
+                case 2016:
                     return (decimal)0.05;
             }
 

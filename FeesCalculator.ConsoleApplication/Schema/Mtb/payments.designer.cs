@@ -133,6 +133,11 @@ namespace FeesCalculator.ConsoleApplication
             try
             {
                 stringReader = new System.IO.StringReader(xml);
+                return ((STATEMENTS) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            catch (Exception rException)
+            {
+                stringReader = new System.IO.StringReader(xml);
                 return ((STATEMENTS)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
@@ -246,6 +251,11 @@ namespace FeesCalculator.ConsoleApplication
                 file.Close();
                 return Deserialize(xmlString);
             }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
             finally
             {
                 if ((file != null))

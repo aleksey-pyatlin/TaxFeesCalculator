@@ -130,7 +130,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                                                               Rate = rateInfo.Rate,
                                                               SellType = SellType.Mandatory
                                                           };
-                            if (rateInfo.AmountNat/rateInfo.Rate != sellMessage.Amount ||
+                            if (Math.Round(rateInfo.AmountNat/rateInfo.Rate,2) != sellMessage.Amount ||
                                 rateInfo.Amount != sellMessage.Amount)
                                 throw new Exception(String.Format("RateInfo is incorrect.: {0}", document.GROUND));
 
@@ -154,7 +154,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                                                               Rate = rateInfo.Rate,
                                                               SellType = SellType.Free
                                                           };
-                            if (rateInfo.AmountNat/rateInfo.Rate != sellMessage.Amount ||
+                            if (Math.Round(rateInfo.AmountNat/rateInfo.Rate, 2) != sellMessage.Amount ||
                                 rateInfo.Amount != sellMessage.Amount)
                                 throw new Exception(String.Format("RateInfo is incorrect.: {0}", document.GROUND));
 

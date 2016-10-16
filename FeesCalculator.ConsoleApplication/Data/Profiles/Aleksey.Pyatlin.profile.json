@@ -1,46 +1,53 @@
 {
     "Configurations": [
-      {
-        "Factory": "MtbBsClnt",
-        "Configurator": {
-          "RootFolder": "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Mtb"
+        {
+            "Factory": "MtbBsClnt",
+            "Configurator": {
+                "RootFolder": "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Mtb"
+            },
+            "Files": [
+                "mtb_data.xml",
+                "mtb_data_21_03_2012_to_19_04_2012.xml",
+                "20120720.xml",
+                "20121017.xml",
+                "20120923.xml",
+                "20120720_only_fees.xml",
+                "20130108.xml",
+                "20130409.xml",
+                "20130717.xml",
+                "20130909.xml",
+                "20130930.xml",
+                "20131231.xml",
+                "20140405.xml",
+                "20140713.xml",
+                "20141015.xml",
+                "20150108.xml",
+                "20150402.xml",
+                "20150720.xml",
+                "20151015.xml",
+                "20160119.xml",
+                "20160227.xml",
+                "20160403.xml",
+                "20160606.xml",
+                "20161010.xml"
+            ]
         },
-        "Files": [
-          "mtb_data.xml",
-          "mtb_data_21_03_2012_to_19_04_2012.xml",
-          "20120720.xml",
-          "20121017.xml",
-          "20120923.xml",
-          "20120720_only_fees.xml",
-          "20130108.xml",
-          "20130409.xml",
-          "20130717.xml",
-          "20130909.xml",
-          "20130930.xml",
-          "20131231.xml",
-          "20140405.xml",
-          "20140713.xml",
-          "20141015.xml",
-          "20150108.xml",
-          "20150402.xml"
-        ]
-      },
-      {
-        "Factory": "BsbHtmlExportCsvImport",
-        "Configurator": {
-          "BsbFreeSellPaymentsPath": [
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\free\\3013008537016 _bsb_2010_year.csv",
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\free\\3013008537016 _bsb_2011_year.csv"
-          ],
-          "BsbSellPaymentsPath": [
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\3013008537003 _bsb_2010_year.csv",
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\3013008537003 _bsb_2011_year.csv"
-          ],
-          "BsbIncommingPaymentsPath": [
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\incomming\\3013008537032 _bsb_2010_year.csv",
-            "C:\\Users\\Aleksey Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\incomming\\3013008537032 _bsb_2011_year.csv"
-          ]
+        {
+            "Factory": "BsbHtmlExportCsvImport",
+            "Configurator": {
+                "BsbFreeSellPaymentsPath": [
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\free\\3013008537016 _bsb_2010_year.csv",
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\free\\3013008537016 _bsb_2011_year.csv"
+                ],
+                "BsbSellPaymentsPath": [
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\3013008537003 _bsb_2010_year.csv",
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\sells\\3013008537003 _bsb_2011_year.csv"
+                ],
+                "BsbIncommingPaymentsPath": [
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\incomming\\3013008537032 _bsb_2010_year.csv",
+                    "C:\\Users\\Aleksey.Pyatlin\\Dropbox\\Payments\\Data\\Bsb\\csv\\incomming\\3013008537032 _bsb_2011_year.csv"
+                ]
+            }
         }
-      }
     ]
 }

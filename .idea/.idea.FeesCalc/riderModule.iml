@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../FeesCalculator.ConsoleApplication" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../FeesCalculator.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../FeesCalculator.BussinnesLogic" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../FeesCalculator.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../.nuget/NuGet.Config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../.nuget/NuGet.exe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../.nuget/NuGet.targets" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.BussinnesLogic/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.BussinnesLogic/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.ConsoleApplication/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.ConsoleApplication/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../FeesCalculator.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
