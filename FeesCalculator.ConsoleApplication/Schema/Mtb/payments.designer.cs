@@ -242,11 +242,12 @@ namespace FeesCalculator.ConsoleApplication
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
+            string xmlString;
             try
             {
                 file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
                 sr = new System.IO.StreamReader(file, encoding);
-                string xmlString = sr.ReadToEnd();
+                xmlString = sr.ReadToEnd();
                 sr.Close();
                 file.Close();
                 return Deserialize(xmlString);
@@ -290,19 +291,19 @@ namespace FeesCalculator.ConsoleApplication
 
         private string oPENINGBALANCEField;
 
-        private int oPENINGBALANCENATField;
+        private string oPENINGBALANCENATField;
 
         private string dATEPREVIOUSField;
 
         private string cLOSINGBALANCEField;
 
-        private int cLOSINGBALANCENATField;
+        private string cLOSINGBALANCENATField;
 
         private byte dEBETDOCUMENTSNETField;
 
         private string dEBETTURNOVERField;
 
-        private uint dEBETTURNOVERNATField;
+        private string dEBETTURNOVERNATField;
 
         private List<STATEMENTSSTATEMENTBYDOCUMENT> dEBETDOCUMENTSField;
 
@@ -310,7 +311,7 @@ namespace FeesCalculator.ConsoleApplication
 
         private string cREDITTURNOVERField;
 
-        private uint cREDITTURNOVERNATField;
+        private string cREDITTURNOVERNATField;
 
         private List<STATEMENTSSTATEMENTBYDOCUMENT1> cREDITDOCUMENTSField;
 
@@ -401,7 +402,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
-        public int OPENINGBALANCENAT
+        public string OPENINGBALANCENAT
         {
             get
             {
@@ -440,7 +441,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
-        public int CLOSINGBALANCENAT
+        public string CLOSINGBALANCENAT
         {
             get
             {
@@ -479,7 +480,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 12)]
-        public uint DEBETTURNOVERNAT
+        public string DEBETTURNOVERNAT
         {
             get
             {
@@ -532,7 +533,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 16)]
-        public uint CREDITTURNOVERNAT
+        public string CREDITTURNOVERNAT
         {
             get
             {
@@ -806,7 +807,7 @@ namespace FeesCalculator.ConsoleApplication
 
         private string aMOUNTField;
 
-        private uint aMOUNTNATField;
+        private string aMOUNTNATField;
 
         private string gROUNDField;
 
@@ -1025,7 +1026,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 14)]
-        public uint AMOUNTNAT
+        public string AMOUNTNAT
         {
             get
             {
@@ -1493,7 +1494,7 @@ namespace FeesCalculator.ConsoleApplication
 
         private string aMOUNTField;
 
-        private uint aMOUNTNATField;
+        private string aMOUNTNATField;
 
         private string gROUNDField;
 
@@ -1712,7 +1713,7 @@ namespace FeesCalculator.ConsoleApplication
         }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 14)]
-        public uint AMOUNTNAT
+        public string AMOUNTNAT
         {
             get
             {

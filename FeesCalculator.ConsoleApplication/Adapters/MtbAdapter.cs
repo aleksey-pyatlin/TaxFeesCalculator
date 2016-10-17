@@ -16,7 +16,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
     public class MtbAdapter : IAdapter
     {
         private readonly IRateManager _rateManager;
-        
+
         private readonly Filter _filter;
 
         private const String RateInfoPattertn =
@@ -41,17 +41,17 @@ namespace FeesCalculator.ConsoleApplication.Adapters
             {
                 String paymentsPath = Path.Combine(dataDirectoryPath, fileName);
                 String xmlContent = "";
-    //
+                //
                 xmlContent = File.ReadAllText(paymentsPath, Settings.FileEncoding);
-    //            xmlContent = xmlContent.Replace("<?xml:stylesheet type=\"text/xsl\" ?>", "");
+                //            xmlContent = xmlContent.Replace("<?xml:stylesheet type=\"text/xsl\" ?>", "");
                 //File.WriteAllText(_paymentsPath, xmlContent, Settings.FileEncoding);
                 CultureInfo cultureInfo = new CultureInfo("ru-Ru");
 
                 XElement payments = XElement.Parse(xmlContent);
 
                 var statements = STATEMENTS.LoadFromFile(paymentsPath, Settings.FileEncoding);
-                
-            
+
+
                 foreach (var statement in statements.STATEMENTBY)
                 {
                     var statementDate = statement.STATEMENTDATE;
@@ -60,8 +60,8 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                     var statementDateParse = DateTime.Parse(statementDate, cultureInfo);
                     var dataactualityParsed = DateTime.Parse(dataactuality, cultureInfo);
                     if (!(statementDateParse.Year == dataactualityParsed.Year
-                        & statementDateParse.Month == dataactualityParsed.Month
-                        & statementDateParse.Day == dataactualityParsed.Day))
+                          & statementDateParse.Month == dataactualityParsed.Month
+                          & statementDateParse.Day == dataactualityParsed.Day))
                     {
                         //throw new ArgumentException("statement.DATAACTUALITY != statement.STATEMENTDATE");
                     }
@@ -79,11 +79,11 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                         {
                             var operationDate = DateTime.Parse(statementDate, cultureInfo);
                             _filter.AddIncommingMessage(messages, new IncommingPaymentMessage()
-                                                              {
-                                                                  Date = operationDate,
-                                                                  Amount = decimal.Parse(document.AMOUNT, cultureInfo),
-                                                                  Rate = _rateManager.GetNationalRate(operationDate)
-                                                              }, document.DOCUMENTNUMBER.ToString());
+                            {
+                                Date = operationDate,
+                                Amount = decimal.Parse(document.AMOUNT, cultureInfo),
+                                Rate = _rateManager.GetNationalRate(operationDate)
+                            }, document.DOCUMENTNUMBER.ToString());
                         }
 
                         // white schema
@@ -97,12 +97,12 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                             //check
 
                             SellMessage sellMessage = new SellMessage()
-                                                          {
-                                                              Date = operationDate,
-                                                              Amount = rateInfo.Amount,
-                                                              Rate = rateInfo.Rate,
-                                                              SellType = SellType.Free
-                                                          };
+                            {
+                                Date = operationDate,
+                                Amount = rateInfo.Amount,
+                                Rate = rateInfo.Rate,
+                                SellType = SellType.Free
+                            };
                             if (rateInfo.Amount != sellMessage.Amount)
                                 throw new Exception(String.Format("RateInfo is incorrect.: {0}", document.GROUND));
 
@@ -123,14 +123,14 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 
                             //check
                             SellMessage sellMessage = new SellMessage()
-                                                          {
-                                                              Date = operationDate,
-                                                              //Amount = decimal.Parse(document.AMOUNT, cultureInfo),
-                                                              Amount = rateInfo.Amount,
-                                                              Rate = rateInfo.Rate,
-                                                              SellType = SellType.Mandatory
-                                                          };
-                            if (Math.Round(rateInfo.AmountNat/rateInfo.Rate,2) != sellMessage.Amount ||
+                            {
+                                Date = operationDate,
+                                //Amount = decimal.Parse(document.AMOUNT, cultureInfo),
+                                Amount = rateInfo.Amount,
+                                Rate = rateInfo.Rate,
+                                SellType = SellType.Mandatory
+                            };
+                            if (Math.Round(rateInfo.AmountNat/rateInfo.Rate, 2) != sellMessage.Amount ||
                                 rateInfo.Amount != sellMessage.Amount)
                                 throw new Exception(String.Format("RateInfo is incorrect.: {0}", document.GROUND));
 
@@ -139,7 +139,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 
                         //free sale
                         // black scheme
-                        if (account == 3013117180019 && statement.CURRCODE == 840 && 
+                        if (account == 3013117180019 && statement.CURRCODE == 840 &&
                             (document.GROUND.Contains("BYR")))
                         {
                             var operationDate = DateTime.Parse(statementDate, cultureInfo);
@@ -148,12 +148,12 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                             //check
 
                             SellMessage sellMessage = new SellMessage()
-                                                          {
-                                                              Date = operationDate,
-                                                              Amount = rateInfo.Amount,
-                                                              Rate = rateInfo.Rate,
-                                                              SellType = SellType.Free
-                                                          };
+                            {
+                                Date = operationDate,
+                                Amount = rateInfo.Amount,
+                                Rate = rateInfo.Rate,
+                                SellType = SellType.Free
+                            };
                             if (Math.Round(rateInfo.AmountNat/rateInfo.Rate, 2) != sellMessage.Amount ||
                                 rateInfo.Amount != sellMessage.Amount)
                                 throw new Exception(String.Format("RateInfo is incorrect.: {0}", document.GROUND));
@@ -161,7 +161,8 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                             _filter.AddSellMessage(messages, sellMessage);
                         }
 
-                        if (document.GROUND.StartsWith("Õ‡ÎÓ„ ÔÓ ÛÔÓ˘∏ÌÌÓÈ ÒËÒÚÂÏÂ Ì‡ÎÓ„ÓÓ·ÎÓÊÂÌËˇ", StringComparison.InvariantCultureIgnoreCase))
+                        if (document.GROUND.StartsWith("Õ‡ÎÓ„ ÔÓ ÛÔÓ˘∏ÌÌÓÈ ÒËÒÚÂÏÂ Ì‡ÎÓ„ÓÓ·ÎÓÊÂÌËˇ",
+                            StringComparison.InvariantCultureIgnoreCase))
                         {
                             TaxInfo taxInfo = GetTaxInfo(document.GROUND);
                             messages.Add(new TaxPaymentMessage()
@@ -178,7 +179,7 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 
             return messages;
         }
-      
+
         private TaxInfo GetTaxInfo(string description)
         {
             Regex regex = new Regex(TaxMessagePattern);
@@ -196,15 +197,17 @@ namespace FeesCalculator.ConsoleApplication.Adapters
 
         public static RateInfo GetSellOperationInfo(string ground)
         {
-            if(ground == "—Œ√À¿—ÕŒ œŒ–”◊≈Õ»≈ Õ¿ œ–Œƒ¿∆” N 32 Œ“ 20120604.  À»≈Õ“ œﬂ“À»Õ ¿À≈ —≈… œ¿¬ÀŒ¬»◊ »Õƒ»¬»ƒ”¿À‹Õ€… œ–≈ƒœ–»Õ»Ã¿“≈À‹ Ã»Õ—  –≈—œ”¡À» ¿ ¡≈À¿–”—‹. USD 537;3/BYR 4507947  ”–— 8390 ¡≈« Õƒ— ”ƒ≈–∆¿Õ¿  ŒÃ»——»ﬂ ¬ –¿«Ã≈–≈ 9016")
+            if (ground ==
+                "—Œ√À¿—ÕŒ œŒ–”◊≈Õ»≈ Õ¿ œ–Œƒ¿∆” N 32 Œ“ 20120604.  À»≈Õ“ œﬂ“À»Õ ¿À≈ —≈… œ¿¬ÀŒ¬»◊ »Õƒ»¬»ƒ”¿À‹Õ€… œ–≈ƒœ–»Õ»Ã¿“≈À‹ Ã»Õ—  –≈—œ”¡À» ¿ ¡≈À¿–”—‹. USD 537;3/BYR 4507947  ”–— 8390 ¡≈« Õƒ— ”ƒ≈–∆¿Õ¿  ŒÃ»——»ﬂ ¬ –¿«Ã≈–≈ 9016")
                 return new RateInfo()
-                                    {
-                                        Rate = Decimal.Parse("8390", Settings.EngCultureInfo),
-                                        AmountNat =
-                                            Decimal.Parse("4507947", Settings.EngCultureInfo),
-                                        Amount = Decimal.Parse("537.3", Settings.EngCultureInfo),
-                                    };
-            if (ground == "—Œ√À¿—ÕŒ œŒ–”◊≈Õ»≈ Õ¿ œ–Œƒ¿∆” N 3 Œ“ 20140204.  À»≈Õ“ œﬂ“À»Õ ¿À≈ —≈… œ¿¬ÀŒ¬»◊ »Õƒ»¬»ƒ”¿À‹Õ€… œ–≈ƒœ–»Õ»Ã¿“≈À‹ Ã»Õ—  –≈—œ”¡À» ¿ ¡≈À¿–”—‹. USD 937;5/BYR 9056250  ”–— 9660 ¡≈« Õƒ— ”ƒ≈–∆¿Õ¿  ŒÃ»——»ﬂ ¬ –¿«Ã≈–≈ 18113")
+                {
+                    Rate = Decimal.Parse("8390", Settings.EngCultureInfo),
+                    AmountNat =
+                        Decimal.Parse("4507947", Settings.EngCultureInfo),
+                    Amount = Decimal.Parse("537.3", Settings.EngCultureInfo),
+                };
+            if (ground ==
+                "—Œ√À¿—ÕŒ œŒ–”◊≈Õ»≈ Õ¿ œ–Œƒ¿∆” N 3 Œ“ 20140204.  À»≈Õ“ œﬂ“À»Õ ¿À≈ —≈… œ¿¬ÀŒ¬»◊ »Õƒ»¬»ƒ”¿À‹Õ€… œ–≈ƒœ–»Õ»Ã¿“≈À‹ Ã»Õ—  –≈—œ”¡À» ¿ ¡≈À¿–”—‹. USD 937;5/BYR 9056250  ”–— 9660 ¡≈« Õƒ— ”ƒ≈–∆¿Õ¿  ŒÃ»——»ﬂ ¬ –¿«Ã≈–≈ 18113")
             {
                 return new RateInfo()
                 {
@@ -212,6 +215,16 @@ namespace FeesCalculator.ConsoleApplication.Adapters
                     AmountNat =
                         Decimal.Parse("9056250", Settings.EngCultureInfo),
                     Amount = Decimal.Parse("937.5", Settings.EngCultureInfo),
+                };
+            }
+            else if(ground.Contains("20161007"))
+            {
+                return new RateInfo()
+                {
+                    Rate = Decimal.Parse("1.8945", Settings.EngCultureInfo),
+                    AmountNat =
+                        Decimal.Parse("1799.4", Settings.EngCultureInfo),
+                    Amount = Decimal.Parse("949.8", Settings.EngCultureInfo),
                 };
             }
 
